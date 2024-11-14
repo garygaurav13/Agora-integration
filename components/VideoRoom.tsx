@@ -29,8 +29,11 @@ export default function VideoRoom({ channelName }: VideoRoomProps) {
       const container = remoteVideoRefs.current[track.uid];
       if (container && track.videoTrack) {
         track.videoTrack.play(container);
-      }
-    });
+       // Play the video (this starts the playback)
+        videoElement.play().catch(err => {
+          console.error('Error playing the video:', err);
+        });
+      );
   }, [remoteTracks]);
 
   const leaveCall = async () => {
